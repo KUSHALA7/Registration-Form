@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-mod-3">
+                
+            </div>
+            <div class="col-md-6 main">
+                <form action="/sign_up" method="POST" onsubmit="return validateForm()">
+                    <h2> Registration Form</h2>
+                    <input type="text" class="box" id="name" name="name" placeholder="Name" required/>
+                    <br>
+                    <input type="text" class="box" id="age" name="age" placeholder="Age" pattern="\d{2}" title="Enter any two numbers" required/>
+                    <br>
+                    <input type="text" class="box" id="email" name="email" placeholder="EmailId" pattern="[a-zA-Z0-9._%+-]+@gmail\.com" title="Enter email in the format xyz@gmail.com" required/>
+                    <br>
+                    <input type="text" class="box" id="phno" name="phno" placeholder="Mobile" pattern="\d{10}" title="Enter 10-digit phone number" required/>
+                    <br>
+                    <input type="text" class="box" id="gender" name="gender" placeholder="Gender" required/>
+                    <br>
+                    <input type="password" class="box" id="password" name="password" placeholder="Password" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{7,}$" title="Password must be 7 characters with at least one capital letter, one or two numbers, and special characters" required/>
+                    <br>
+                    <input type="submit" value="Submit" id="submit" />
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function validateForm() {
+            var emailInput = document.getElementById('email');
+            var ageInput = document.getElementById('age');
+            var phnoInput = document.getElementById('phno');
+            var passwordInput = document.getElementById('password');
+
+            var emailPattern = /[a-zA-Z0-9._%+-]+@gmail\.com/;
+            var agePattern = /^\d{2}$/;
+            var phnoPattern = /^\d{10}$/;
+            var passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{7,}$/;
+
+            if (!emailPattern.test(emailInput.value) || !agePattern.test(ageInput.value) || !phnoPattern.test(phnoInput.value) || !passwordPattern.test(passwordInput.value)) {
+                alert('Please enter valid email, age, phone number, and password formats.');
+                return false; // Prevent form submission
+            }
+
+            return true; // Allow form submission
+        }
+    </script>
+</body>
+</html>
